@@ -9,14 +9,14 @@
 
 这个 API 只观察祖先元素和后代元素之间产生的交叉现象，并且后代元素不能脱离文档流。所以这个 API 设计初衷也就是观察这类交叉现象，对于其他交叉现象，这个 API 是无效的。
 
-* [兄弟节点观察的例子](./demo/ch1/not-parent.html)
-* [父节点单独脱离文档流观察的例子](./demo/ch1/parent-not-in-dom.html)
-* [子节点脱离文档流观察的例子](./demo/ch1/not-parent.html)
+* [兄弟节点观察的例子](https://greenfavo.github.io/IntersectionObserver-learn/demo/ch1/not-parent.html)
+* [父节点单独脱离文档流观察的例子](https://greenfavo.github.io/IntersectionObserver-learn/demo/ch1/parent-not-in-dom.html)
+* [子节点脱离文档流观察的例子](https://greenfavo.github.io/IntersectionObserver-learn/demo/ch1/not-parent.html)
 
 ### 交叉现象中值得研究的量
 
 祖先元素和后代元素交叉现象如下图所示：
-![交叉现象示例](./images/img0.png)
+![交叉现象示例](https://greenfavo.github.io/IntersectionObserver-learn/images/img0.png)
 
 其中，元素左上角的点距离浏览器视图左上角的点的水平距离为 left、垂直距离为top，元素右下角的点距离浏览器视图左上角的点的水平距离为 right、垂直距离为 bottom。于是，我们可以分别获取祖先元素和后代元素的两组 (top, left, right, bottom) 信息，有了这些信息，我们就可以对祖先元素和后代元素进行定位。
 
@@ -86,5 +86,5 @@ io.disconnect()
 
 ## 实际应用
 
-* [滚动加载](./demo/ch2/slide.html)
-* [懒加载](./demo/ch2/lazyload.html)
+* [滚动加载](https://greenfavo.github.io/IntersectionObserver-learn/demo/ch2/slide.html)
+* [懒加载](https://greenfavo.github.io/IntersectionObserver-learn/demo/ch2/lazyload.html)
