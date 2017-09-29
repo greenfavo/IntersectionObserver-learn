@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>兄弟节点</title>
+  <style>
+    .left {
+      width: 400px;
+      height: 400px;
+      background: rgba(222, 111, 50, .5);
+    }
+    .right {
+      position: relative;
+      top: -200px;
+      width: 400px;
+      height: 400px;
+      background: rgba(50, 111, 50, .5);
+    }
+  </style>
+</head>
+<body>
+  <div class="left"></div>
+  <!-- 兄弟元素的子元素 -->
+  <!-- <div>
+    <div class="right"></div>
+  </div> -->
+  <!-- 兄弟元素 -->
+  <div class="right"></div>  
+  <script>
+    function callback (...args) {
+      let intersections = args[0]
+      alert('是否交叉：' + args[0][0].isIntersecting)
+      alert('交叉率：' + args[0][0].intersectionRatio)
+      io.unobserve(target)
+    }
+    var io = new IntersectionObserver(callback, {
+      root: document.querySelector('.right')
+    })
+    var target = document.querySelector('.left')
+    io.observe(target)
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>懒加载</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .item {
+      list-style: none;
+    }
+    .item > img {
+      display: block;
+      margin: 0 auto;
+      width: 520px;
+      height: 520px;
+    }
+  </style>
+</head>
+<body>
+  <ul class="list">
+    <li class="item"><img src="http://bpic.588ku.com/element_pic/01/47/02/40574338e3455ef.jpg" alt="狗" data-src="http://cdn01.dcfever.com/articles/news/2016/02/160204_dog_02.jpg"></li>
+    <li class="item"><img src="http://bpic.588ku.com/element_pic/01/47/02/40574338e3455ef.jpg" alt="狗" data-src="http://nekusaka.com/wp-content/uploads/2017/02/shiba-inu1.jpg"></li>
+    <li class="item"><img src="http://bpic.588ku.com/element_pic/01/47/02/40574338e3455ef.jpg" alt="狗" data-src="http://z9x9.com/wp-content/uploads/2016/04/6169548..jpg"></li>
+    <li class="item"><img src="http://bpic.588ku.com/element_pic/01/47/02/40574338e3455ef.jpg" alt="狗" data-src="http://p1.pstatp.com/origin/24990019098ee16bcc4b"></li>
+    <li class="item"><img src="http://bpic.588ku.com/element_pic/01/47/02/40574338e3455ef.jpg" alt="狗" data-src="http://www.twgreatdaily.com/imgs/image/51/5171875.jpg"></li>
+  </ul>
+  <script>
+    function callback (...args) {
+      let intersections = args[0]
+      // loading 与 window 交叉区域
+      intersections.forEach(function(intersection) {
+        let target = intersection.target
+        if (intersection.isIntersecting) {
+          target.src = target.dataset.src
+          io.unobserve(target)
+        }
+      })
+    }
+    let targets = Array.from(document.querySelectorAll('.item > img'))
+    let io = new IntersectionObserver(callback)
+    targets.forEach(target => io.observe(target))
+  </script>
+</body>
+</html>

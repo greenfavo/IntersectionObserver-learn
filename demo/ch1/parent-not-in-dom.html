@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>父节点脱离文档流</title>
+  <style>
+    .parent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 400px;
+      height: 400px;
+      background: rgba(222, 111, 50, .5);
+    }
+    .child {
+      width: 400px;
+      position: relative;
+      height: 400px;
+      background: rgba(50, 111, 50, .5);
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    我是父元素<br>
+    position: absolute;<br>
+    top: 0;<br>
+    left: 0;<br>
+    width: 400px;<br>
+    height: 400px;<br>
+    background: rgba(222, 111, 50, .5);<br>
+    <div class="child">
+      我是子元素<br>
+      width: 400px;<br>
+      position: relative;<br>
+      top: 200px;<br>
+      height: 400px;<br>
+      background: rgba(50, 111, 50, .5);<br>
+    </div>
+    <script>
+      function callback (...args) {
+      let intersections = args[0]
+        alert('是否交叉：' + args[0][0].isIntersecting)
+        alert('交叉率：' + args[0][0].intersectionRatio)
+        io.unobserve(target)
+      }
+      var io = new IntersectionObserver(callback, {
+        root: document.querySelector('.parent')
+      })
+      var target = document.querySelector('.child')
+      io.observe(target)
+    </script>
+  </div>
+</body>
+</html>

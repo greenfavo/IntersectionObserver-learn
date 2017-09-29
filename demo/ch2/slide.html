@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>滚动加载</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .item {
+      list-style: none;
+      height: 100px;
+      background: greenyellow;
+      border: 1px solid #eee;
+    }
+    .loading {
+      width: 100px;
+      height: 50px;
+      font-size: 50px;
+      line-height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <ul class="list">
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+    <li class="item"></li>
+  </ul>
+  <span class="loading">···</span>
+  <script>
+    function callback (...args) {
+      let intersections = args[0]
+      // loading 与 window 交叉区域
+      let intersection = intersections[0]
+      let list = document.querySelector('.list')
+      console.log(intersection.intersectionRatio,intersection.isIntersecting)
+      if (intersection.isIntersecting) {
+        setTimeout(() => {
+          for (let index = 0; index < 10; index++) {
+            let element = document.createElement('li')
+            element.className = 'item'
+            list.appendChild(element)
+          }
+        }, 500)
+      }
+    }
+    let target = document.querySelector('.loading')
+    let io = new IntersectionObserver(callback, {
+      threshold: [0.1]
+    })
+    io.observe(target)
+  </script>
+</body>
+</html>
